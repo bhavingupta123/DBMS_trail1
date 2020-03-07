@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+
+  <link href="https://fonts.googleapis.com/css?family=Montserrat|Ubuntu" rel="stylesheet">
+
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/styles.css">
+
+  <!-- Font Awesome -->
+  <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+
+  <!-- Bootstrap Scripts -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+  <style>
+      form input
+{
+margin: 75px 75px 75px 75px;
+}
+
+img
+{
+  margin-left: 50px;
+  height: 150px;
+  width: 150px;
+}
+
+button
+{
+  margin-left:  40% ;
+  margin-top: 25px;
+}
+
+hr
+{
+  border-bottom: solid #D4D4D4;
+}
+
+.box {
+  padding: 100px 100px 100px 100px;
+  max-width: 700px;
+  margin: 50px auto;
+  background: white;
+  border-radius: 5px;
+  box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.3);
+}
+
+.bg
+ {
+    background-color: cadetblue;
+ }
+
+.fg{
+     background-image: url("images/flag.jpg");
+   max-width: 100%;
+   background-repeat:no-repeat;
+}
+  </style>
+
+</head>
+
+<body>
+    <div class="container fg">
+        <h1 align="center">WELCOME TO GOVERMENT PORTAL FOR VOTING</h1>
+    </div>
+
+    <div>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-item nav-link" href="/">HOME PAGE </a>
+            <a class="nav-item nav-link active" href="login"><span class="sr-only">(current)</span>LOGIN TO VOTE</a>
+            <a class="nav-item nav-link" href="signup">VOTERS CREATE ACCOUNT</a>
+            <a class="nav-item nav-link" href="candidatelogin">CANDIDATE LOGIN</a>
+            <a class="nav-item nav-link" href="candidatecreate">CANDIDATE CREATE ACCOUNT</a>
+            <a class="nav-item nav-link" href="#">ADMIN</a>
+            <a class="nav-item nav-link" href="#help">NEED HELP?</a>
+          </div>
+        </div>
+      </nav>
+    </div>
+
+
+  <div class="jumbotron jumbotron-primary text-center  ">
+    <h1 >Please cast your vote</h1>
+  </div>
+
+
+<div class="box">
+  <form class="vote" >
+
+        <label class="" for="">Candidate 1</label>
+        <img src="images\user.jpg" alt="">
+
+       <input type="radio" class="" id="" name="vote" ><br>
+        <hr>
+
+
+       <label class="" for="">Candidate 2</label>
+       <img src="images\user.jpg" alt="">
+
+      <input type="radio" class="" id="" name="vote" ><br>
+      <hr>
+
+      <label class="" for="">Candidate 3</label>
+      <img src="images\user.jpg" alt="">
+
+     <input type="radio" class="" id="" name="vote" ><br>
+     <hr>
+
+     <label class="" for="">Candidate 4</label>
+     <img src="images\user.jpg" alt="">
+
+    <input type="radio" class="" id="" name="vote" ><br>
+    <hr>
+
+     <button type="button" class="btn btn-md btn-primary" name="button">CAST VOTE</button>
+  </form>
+</div>
+
+<br><br><br>
+
+<div class="container">
+<div class="bg">
+<div class="container" id="help">
+<div class="row">
+  <div class="col-sm-4">
+    <div>
+      <h4>NEED ANY HELP?</h4>
+    </div>  
+  </div>
+
+   <div class="col-sm-4">
+     <h4>VISIT US</h4>
+  </div>
+
+   <div class="col-sm-4">
+    <h4>EMAIL</h4>
+  </div>
+
+</div>
+</div>
+
+<div class="container">
+<div class="row">
+  <div class="col-sm-4">
+    <div>
+      <h6>CONTACT</h6>
+    </div>  
+  </div>
+
+   <div class="col-sm-4">
+     <h6>LOCATION</h6>
+  </div>
+
+   <div class="col-sm-4">
+    <h6>MAIL US:  </h6>
+  </div>
+
+</div>
+</div>
+
+<br>
+<div class="container">
+<div class="row">
+  <div class="col-sm-4">
+    <div>
+      <h6>CONTACT</h6>
+    </div>  
+  </div>
+
+   <div class="col-sm-4">
+     <h6>LOCATION</h6>
+  </div>
+
+   <div class="col-sm-4">
+    <h6>MAIL US:  </h6>
+  </div>
+
+</div>
+</div>
+</div>
+</div>  
+
+</body>
+
+</html>

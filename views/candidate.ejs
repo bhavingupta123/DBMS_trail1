@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CANDIDATE SIGNUP PAGE</title>
+    <link rel="stylesheet" href="signupcss.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <style>
+        body{
+    /*background: -webkit-radial-gradient(center, ellipse cover,grey 20%,black 80%); */
+    color: #000;
+    height:calc(100vh);
+width:100%;
+}
+
+form input[type="text"], input[type="password"],input[type="date"]
+{
+    background-color: #fff;
+	border-radius: 5px 5px 5px 5px;
+	color: #000;
+	margin-bottom: 1em;
+	padding: 0 16px;
+    width: 250px;
+    height:50px;
+    margin:20px;
+    
+}
+
+form input[type="radio"]
+{
+    margin:20px;
+    color:black;
+    
+}
+form input[type="submit"]
+{
+    border-radius: 6px;
+    
+    background-color: #000000;
+    color: #eee;
+    font-weight: bold;
+    /* margin-bottom: 2em; */
+    text-transform: uppercase;
+    padding: 10px;
+    
+    margin:20px;
+
+}
+
+a{
+    margin:10px;
+    
+}
+
+.navbar{
+    background-color: black;
+    color: gray;
+
+    
+}
+
+
+table{
+    margin-top:550px;
+}
+
+
+
+form input[type="submit"]:hover{
+     background-color:#d44179;
+ }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1 align="center">WELCOME TO GOVERMENT PORTAL FOR VOTING</h1>
+    </div>
+
+    <div>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+              <a class="nav-item nav-link" href="#">HOME PAGE <span class="sr-only">(current)</span></a>
+              <a class="nav-item nav-link" href="login">LOGIN TO VOTE</a>
+              <a class="nav-item nav-link" href="signup">VOTERS CREATE ACCOUNT</a>
+              <a class="nav-item nav-link" href="candidatelogin">CANDIDATE LOGIN</a>
+              <a class="nav-item nav-link active" href="candidatecreate">CANDIDATE CREATE ACCOUNT</a>
+              <a class="nav-item nav-link" href="#">ADMIN</a>
+              <a class="nav-item nav-link" href="#help">NEED HELP?</a>
+            </div>
+          </div>
+        </nav>
+        </div>
+
+       <div class="jumbotron" >
+            <h1 style="text-align: center;">SIGN UP</h1>
+       </div>
+
+
+       <div class="container">
+           <form action="/candidate" method="POST">
+            <div class="row">
+ 
+                <div class="col-sm-1">
+                    <br>Candidate Name 
+                </div>
+ 
+                <div class="col-sm-4">
+                     <input type="text" placeholder="Enter your name" name="username"  required /> 
+                 </div>
+ 
+                <div class="col-sm-1">
+                    <br>Candidate ID  
+                </div>
+ 
+                <div class="col-sm-3">
+                     <input type="text" placeholder="Enter your voter id" name="id" required /> 
+                 </div>
+ 
+            </div>
+
+
+            <div class="row">
+ 
+                <div class="col-sm-1">
+                    <br>Party
+                </div>
+ 
+                <div class="col-sm-4">
+                    <input type="text" placeholder="Enter your address" name="party" required />
+                 </div>
+ 
+                <div class="col-sm-1">
+                    <br>Sign 
+                </div>
+ 
+                <div class="col-sm-3">
+                   <br>  <input type="file" name="file" required /> 
+                 </div>
+ 
+            </div>
+            
+            <div class="row">
+ 
+                <div class="col-sm-1">
+                    <br>Password 
+                </div>
+ 
+                <div class="col-sm-4">
+                    <input type="password" placeholder="Enter a password" name="password" required />
+                 </div>
+ 
+                <div class="col-sm-1">
+                    <br>  Confirm Password
+                </div>
+ 
+                <div class="col-sm-3">
+                    <input type="password" placeholder="Enter a password" name="cpassword" required />
+                 </div>
+ 
+            </div>
+
+           <div class="row">
+
+            <div class="col-sm-5">
+                <br>Gender <input type="radio" name="gender" value="M" />M
+                <input type="radio" name="gender" value="F" checked />F
+                <input type="radio" name="gender" value="Others" />Others
+            </div>
+
+            <div class="col-sm-7">
+                Date Of Birth <input type="date" required />
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="col-sm-4"> </div>
+            <div class="col-sm-6">
+                <input type="submit" value="submit" />
+            </div>
+        </div>
+        </form>
+       </div>
+
+       <br><br><br>
+
+       <div class="container" id="help">
+       <div class="bg">
+       <div class="container">
+         <div class="row">
+           <div class="col-sm-4">
+             <div>
+               <h4>NEED ANY HELP?</h4>
+             </div>  
+           </div>
+       
+            <div class="col-sm-4">
+              <h4>VISIT US</h4>
+           </div>
+       
+            <div class="col-sm-4">
+             <h4>EMAIL</h4>
+           </div>
+       
+         </div>
+       </div>
+       
+       <div class="container">
+         <div class="row">
+           <div class="col-sm-4">
+             <div>
+               <h6>CONTACT</h6>
+             </div>  
+           </div>
+       
+            <div class="col-sm-4">
+              <h6>LOCATION</h6>
+           </div>
+       
+            <div class="col-sm-4">
+             <h6>MAIL US:  </h6>
+           </div>
+       
+         </div>
+       </div>
+       
+       <br>
+       <div class="container">
+         <div class="row">
+           <div class="col-sm-4">
+             <div>
+               <h6>CONTACT</h6>
+             </div>  
+           </div>
+       
+            <div class="col-sm-4">
+              <h6>LOCATION</h6>
+           </div>
+       
+            <div class="col-sm-4">
+             <h6>MAIL US:  </h6>
+           </div>
+       
+         </div>
+       </div>
+       </div>
+       </div> 
+</body>
+</html>
