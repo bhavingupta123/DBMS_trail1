@@ -20,6 +20,8 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
   <style>
+
+    
       form input
 {
 margin: 75px 75px 75px 75px;
@@ -42,6 +44,26 @@ hr
 {
   border-bottom: solid #D4D4D4;
 }
+
+
+form input[type="submit"]
+{
+    border-radius: 6px;
+    
+    background-color: #000000;
+    color: #eee;
+    font-weight: bold;
+    /* margin-bottom: 2em; */
+    text-transform: uppercase;
+    padding: 10px;
+    
+    margin:20px;
+
+}
+
+form input[type="submit"]:hover{
+     background-color:#d44179;
+ }
 
 .box {
   padding: 100px 100px 100px 100px;
@@ -97,34 +119,34 @@ hr
 
 
 <div class="box">
-  <form class="vote" >
+  <form class="vote" method="POST" action="/vote">
 
         <label class="" for="">Candidate 1</label>
         <img src="images\user.jpg" alt="">
 
-       <input type="radio" class="" id="" name="vote" ><br>
+       <input type="radio" class="" id="" name="vote" value="1" ><br>
         <hr>
 
 
        <label class="" for="">Candidate 2</label>
        <img src="images\user.jpg" alt="">
 
-      <input type="radio" class="" id="" name="vote" ><br>
+      <input type="radio" class="" id="" name="vote" value="2" ><br>
       <hr>
 
       <label class="" for="">Candidate 3</label>
-      <img src="images\user.jpg" alt="">
+      <img src="images\user.jpg" alt=" ">
 
-     <input type="radio" class="" id="" name="vote" ><br>
+     <input type="radio" class="" id="" name="vote"  value="3"><br>
      <hr>
 
      <label class="" for="">Candidate 4</label>
      <img src="images\user.jpg" alt="">
 
-    <input type="radio" class="" id="" name="vote" ><br>
+    <input type="radio" class="" id="" name="vote" value="4"><br>
     <hr>
 
-     <button type="button" class="btn btn-md btn-primary" name="button">CAST VOTE</button>
+    <input type="submit" value="submit" name="CASTE VOTE"/>
   </form>
 </div>
 

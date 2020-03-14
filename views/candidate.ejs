@@ -89,7 +89,7 @@ form input[type="submit"]:hover{
           </button>
           <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-              <a class="nav-item nav-link" href="#">HOME PAGE <span class="sr-only">(current)</span></a>
+              <a class="nav-item nav-link" href="#">HOME PAGE <span class="sr-only"></span></a>
               <a class="nav-item nav-link" href="login">LOGIN TO VOTE</a>
               <a class="nav-item nav-link" href="signup">VOTERS CREATE ACCOUNT</a>
               <a class="nav-item nav-link" href="candidatelogin">CANDIDATE LOGIN</a>
@@ -107,7 +107,7 @@ form input[type="submit"]:hover{
 
 
        <div class="container">
-           <form action="/candidate" method="POST">
+           <form action="/candidatecreate" method="POST">
             <div class="row">
  
                 <div class="col-sm-1">
@@ -136,17 +136,17 @@ form input[type="submit"]:hover{
                 </div>
  
                 <div class="col-sm-4">
-                    <input type="text" placeholder="Enter your address" name="party" required />
+                    <input type="text" placeholder="Enter your party name" name="party" required />
                  </div>
  
                 <div class="col-sm-1">
                     <br>Sign 
                 </div>
  
-                <div class="col-sm-3">
+               <!-- <div class="col-sm-3">
                    <br>  <input type="file" name="file" required /> 
                  </div>
- 
+                 -->
             </div>
             
             <div class="row">
@@ -178,7 +178,7 @@ form input[type="submit"]:hover{
             </div>
 
             <div class="col-sm-7">
-                Date Of Birth <input type="date" required />
+                Date Of Birth <input type="date" name="date" required />
             </div>
         </div>
 

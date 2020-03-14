@@ -3,11 +3,10 @@ const mongoose = require('mongoose');
 const UserSchema = mongoose.Schema({
     username:String,
     password1:String,
-    address:String,
+    party:String,
     id :Number,
-    email :String,
+    date1 :String,
     gender : String,
-    vote :Number
 });
 
-module.exports =mongoose.model('all',UserSchema,'voter_data');
+module.exports =mongoose.model('candidate',UserSchema,'candidate_data');
