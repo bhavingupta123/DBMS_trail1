@@ -103,8 +103,9 @@ form input[type="submit"]:hover{
             <a class="nav-item nav-link" href="/">HOME PAGE </a>
             <a class="nav-item nav-link active" href="login"><span class="sr-only">(current)</span>LOGIN TO VOTE</a>
             <a class="nav-item nav-link" href="signup">VOTERS CREATE ACCOUNT</a>
-            <a class="nav-item nav-link " href="candidatelogin">CANDIDATE LOGIN</a>
-            <a class="nav-item nav-link" href="adminlogin">ADMIN</a>
+            <a class="nav-item nav-link" href="candidatelogin">CANDIDATE LOGIN</a>
+            <a class="nav-item nav-link" href="candidatecreate">CANDIDATE CREATE ACCOUNT</a>
+            <a class="nav-item nav-link" href="#">ADMIN</a>
             <a class="nav-item nav-link" href="#help">NEED HELP?</a>
           </div>
         </div>
@@ -113,12 +114,12 @@ form input[type="submit"]:hover{
 
 
   <div class="jumbotron jumbotron-primary text-center  ">
-    <h1 >Please cast your vote</h1>
+    <h1 >SELECT CANDIDATE TO DELETE</h1>
   </div>
 
 
 <div class="box">
-  <form class="vote" method="POST" action="/vote">
+  <form class="vote" method="POST" action="/delete">
 
       <% candidateList.forEach(function(candidate){ %>
         
@@ -129,7 +130,7 @@ form input[type="submit"]:hover{
             </div>
 
             <div class="col-sm-5">
-                <img src="./uploads/<%= candidate.sign  %>" alt="<%= candidate.party %>">
+              <img src="images\user.jpg" alt="">
             </div>
 
             <div class="col-sm-3">
@@ -137,7 +138,7 @@ form input[type="submit"]:hover{
             </div>
             
             <div class="col-sm-1">
-              <input type="radio" value="<%= candidate.party %>" id="" name="vote" ><br>
+              <input type="radio" value="<%= candidate.id %>" id="" name="cid" ><br>
             </div>
             
           </div>
@@ -152,7 +153,7 @@ form input[type="submit"]:hover{
 
 <br><br><br>
 
-<div class="container" id="help">
+<div class="container">
 <div class="bg">
 <div class="container" id="help">
 <div class="row">

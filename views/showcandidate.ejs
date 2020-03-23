@@ -101,9 +101,9 @@ form input[type="submit"]:hover{
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
             <a class="nav-item nav-link" href="/">HOME PAGE </a>
-            <a class="nav-item nav-link active" href="login"><span class="sr-only">(current)</span>LOGIN TO VOTE</a>
+            <a class="nav-item nav-link " href="login"><span class="sr-only">(current)</span>LOGIN TO VOTE</a>
             <a class="nav-item nav-link" href="signup">VOTERS CREATE ACCOUNT</a>
-            <a class="nav-item nav-link " href="candidatelogin">CANDIDATE LOGIN</a>
+            <a class="nav-item nav-link active" href="candidatelogin">CANDIDATE LOGIN</a>
             <a class="nav-item nav-link" href="adminlogin">ADMIN</a>
             <a class="nav-item nav-link" href="#help">NEED HELP?</a>
           </div>
@@ -113,41 +113,83 @@ form input[type="submit"]:hover{
 
 
   <div class="jumbotron jumbotron-primary text-center  ">
-    <h1 >Please cast your vote</h1>
+    <h1 >CANDIDATE INFO</h1>
   </div>
 
 
+  
+
+
 <div class="box">
-  <form class="vote" method="POST" action="/vote">
+  
+    <div class="container">
+       <div class="row">
+            <div class="col-sm-6">
+                <h4>PARTY</h4>
+            </div>
 
-      <% candidateList.forEach(function(candidate){ %>
+            <div class="col-sm-6">
+                <h5><%= candidateList.party %></h5>
+            </div>
+        </div>  
+       <br><br><br>
         
-        <div class="container">
-          <div class="row">
-            <div class="col-sm-2">
-              <label class="" for=""><%= candidate.party %></label>
+        <div class="row">
+            <div class="col-sm-4">
+                <h4>SIGN</h4>
             </div>
 
-            <div class="col-sm-5">
-                <img src="./uploads/<%= candidate.sign  %>" alt="<%= candidate.party %>">
+            <div class="col-sm-4">
+                <img src="./uploads/<%= candidateList.sign  %>" alt="<%= candidateList.party %>">
+            </div>
+        </div> 
+        <br><br>
+        <div class="row">
+            <div class="col-sm-6">
+                <h4>NAME</h4>
             </div>
 
-            <div class="col-sm-3">
-              <label class="" for=""><%= candidate.username %></label>
+            <div class="col-sm-6">
+                <label class="" for=""><%= candidateList.username %></label>
             </div>
-            
-            <div class="col-sm-1">
-              <input type="radio" value="<%= candidate.party %>" id="" name="vote" ><br>
+        </div> 
+        <br><br><br>
+        <div class="row">
+            <div class="col-sm-6">
+                <h4>ID</h4>
             </div>
-            
+
+            <div class="col-sm-6">
+                <label class="" for=""><%= candidateList.id %></label>
+            </div>
+        </div> 
+
+        <br><br><br>
+        <div class="row">
+            <div class="col-sm-6">
+                <h4>GENDER</h4>
+            </div>
+
+            <div class="col-sm-6">
+                <label class="" for=""><%= candidateList.gender %></label>
+            </div>
+        </div> 
+
+        <br><br><br>
+        <div class="row">
+            <div class="col-sm-6">
+                <h4>DATE OF BIRTH</h4>
+            </div>
+
+            <div class="col-sm-6">
+                <label class="" for=""><%= candidateList.date1 %></label>
+            </div>
+        </div> 
+
+
           </div>
         </div>  
         <hr>
-
-    <%  })%>
-
-    <input type="submit" value="submit" name="CASTE VOTE"/>
-  </form>
 </div>
 
 <br><br><br>

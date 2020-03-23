@@ -7,9 +7,9 @@ const candidate =  require('./data3')
 const otpv = require('./data4')
 const admin = require('./data6')
 const otpp = require('./data5')
-
-const multer =require('multer')
-
+const dates1 = require('./data7')
+const multer = require('multer')
+var fs = require('fs');
 const app = express();
 
 var nodemailer = require('nodemailer');
@@ -19,6 +19,19 @@ var global_id;
 var global_email;
 var bjp_votes,congress_votes,others_votes,aap_votes;
 var check=0;
+
+let date_ob = new Date();
+
+let date = ("0" + date_ob.getDate()).slice(-2);
+
+// current month
+let month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
+
+// current year
+let year = date_ob.getFullYear();
+
+var day1,day2,mon1,mon,year1;
+
 app.use(bodyparser({urlencoded:true}))
 
 var publicDir = require('path').join(__dirname,'/public')
@@ -28,6 +41,18 @@ mongoose.connect("mongodb://localhost/sample");
 
 app.set('views','views')
 app.set('view engine','ejs')
+
+
+var Storage= multer.diskStorage({
+    destination:"./public/uploads/",
+    filename:(req,file,cb)=>{
+      cb(null,file.fieldname+"_"+Date.now()+require('path').extname(file.originalname));
+    }
+  });
+  
+  var upload = multer({
+    storage:Storage
+  }).single('filename')
 
 app.get('/login',(req,res)=>{
     res.render('login')
@@ -120,33 +145,64 @@ app.post('/otp',(req,res)=>{
 })
 
 app.get('/vote',(req,res)=>{
-    res.render('vote')
+
+    candidate.find({}, function(err, foundCandidate){
+        if(err){
+          console.log(err);
+        }
+        else{
+          console.log("Successfull");
+
+          dates1.find({},function(err,datesd){
+            if(err){
+                console.log(err);
+            }
+            else{
+                if(datesd!=[])
+                {  
+                    console.log("curent date");
+                    console.log(date);
+                    var day1=datesd[0].day1;
+                    var day2=datesd[0].day2;
+                    mon1=datesd[0].mon1;
+                    mon2=datesd.mon2;
+                    year1=datesd[0].year1;
+                    console.log("start date");
+                    console.log(day1);
+
+                    console.log("end date");
+                    console.log(day2);
+
+                    console.log("month");
+                    console.log(mon1);
+
+                    console.log("year");
+                    console.log(year1);
+
+                    if(day1<=date && date<=day2 && month==mon1 && year1==year )
+                    {
+                      res.render("vote",{candidateList: foundCandidate});  
+                    }
+
+                    else
+                    {
+                       res.render('votingclosed')
+                    }
+                }
+            }
+       })
+          
+          
+        }
+        
+      })
     
 })
 
 app.post('/vote',(req,res)=>{
     const vote = req.body.vote;
-    if(vote==1)
-    {
-        party="BJP";
-    }
-    
-    else if(vote==2)
-    {
-        party="CONGRESS";
-    }
-
-    else if(vote==3)
-    {
-        party="AAP";
-    }
-
-    else if(vote==4)
-    {
-        party="OTHERS";
-    }
-
-    
+    var party=vote;
+    console.log(vote)
     total.findOneAndUpdate({party:party},  {$inc: {votes: 1}}, function (err, doc) {
        
         if (err) 
@@ -166,7 +222,7 @@ app.post('/vote',(req,res)=>{
                         console.log(err);
                     }
                     else{
-                        res.redirect('/thankyou')
+                        res.render('thankyou')
                     }
                 })
             }
@@ -174,21 +230,23 @@ app.post('/vote',(req,res)=>{
     });
 
 })
-
+/*
 app.get('/thankyou',(req,res)=>{
     res.render('thankyou')
-})
+})*/
 
 app.get('/candidatecreate',(req,res)=>{
     res.render('candidate')    
 })
 
-app.post('/candidatecreate',(req,res)=>{
+app.post('/candidatecreate',upload,(req,res)=>{
     
+
     const username = req.body.username;
     const password1 = req.body.password;
     const password2 = req.body.cpassword;
     const party = req.body.party;
+    const sign = req.file.filename;
     const id = req.body.id;
     const date1 = req.body.date;
     const gender = req.body.gender;
@@ -216,6 +274,7 @@ app.post('/candidatecreate',(req,res)=>{
                         username,
                         password1,
                         party,
+                        sign,
                         id,
                         date1,
                         gender
@@ -234,7 +293,7 @@ app.post('/candidatecreate',(req,res)=>{
                      console.log('done candidate created')
                  });
                 }
-                res.redirect('/')
+                res.render('adminlogin')
             }
         }
    })
@@ -256,14 +315,16 @@ app.post('/candidatelogin',(req,res)=>{
     const password1 = req.body.password;
     console.log(id)
     console.log(password1)
-    all.find({id:id,password1:password1},function(err,founduser){
+    candidate.findOne({id:id,password1:password1},function(err,founduser){
         if(err){
-            console.log(err);
+            res.send(err);
         }
         else{
-            if(founduser!=[])
-            {   console.log(founduser)
-                  res.redirect('/vote')
+            if(founduser)
+            {   
+                console.log("candidate data wait");
+                console.log(founduser);
+                res.render("showcandidate",{candidateList:founduser});
             }
         }
    })
@@ -298,7 +359,7 @@ app.post('/login',(req,res)=>{
                 else
                 {
                     console.log("FO bhbhbh")
-                    res.redirect('/alreadyvoted')
+                    res.render('alreadyvoted')
                 }
                       
             }
@@ -380,12 +441,12 @@ app.post('/signup',(req,res)=>{
    })
 
 })
-
+/*
 app.get('/alreadyvoted',(req,res)=>{
     res.render('alreadyvoted')
 
 })
-
+*/
 app.get('/home',(req,res)=>{
     res.render('home')
 })
@@ -403,17 +464,24 @@ app.post('/adminlogin',(req,res)=>{
         if(err){
             res.send(err);
         }else{
-            res.redirect('/selectoption')
+
+            if(founduser)
+            {   
+                res.render('selectoption')
+            }
+            
         }
    })
     
 })
 
+/*
 
 app.get('/selectoption',(req,res)=>{
     res.render('selectoption')
 
 })
+*/
 
 
 app.post('/selectoption',(req,res)=>{
@@ -422,7 +490,17 @@ app.post('/selectoption',(req,res)=>{
 
     if(option==1)
     {
-                total.findOne({party:"BJP"},function(err,founduser){    
+
+        total.find({}, function(err, foundCandidate){
+            if(err){
+              console.log(err);
+            }
+            else{
+              console.log("Successfull");
+            }
+            res.render("results",{candidateList: foundCandidate});
+          })
+               /* total.findOne({party:"BJP"},function(err,founduser){    
                     if(err){
                         res.send(err);
                     }else{
@@ -507,18 +585,121 @@ app.post('/selectoption',(req,res)=>{
                 res.render('results',{winner:bjp_votes});
             }
         }
-        })  
+        })  */
     }
 
     else if(option==2)
     {
-
+        candidate.find({}, function(err, foundCandidate){
+            if(err){
+              console.log(err);
+            }
+            else{
+              console.log("Successfull");
+            }
+            res.render("delete",{candidateList: foundCandidate});
+          })
     }
 
     else if(option==3)
     {
         res.render('candidate');
     }
+
+    else if(option==4)
+    {
+        res.render('date');
+    }
+})
+/*
+app.get('/delete',(req,res)=>{
+    res.render('delete')
+})
+*/
+
+
+app.post('/date',(req,res)=>{
+
+     day1 = req.body.day1;
+     mon1 = req.body.month1;
+     day2 = req.body.day2;
+     month2 = req.body.month2;
+     mon2 = req.body.month2;   
+    // if(founduser)
+     //{   
+        dates1.deleteOne({}, function (err, result) {
+             if (err) {
+                 console.log("error query");
+             } else {
+                   console.log(result);
+             }
+         });
+    // }
+
+     var year1=2020;
+     const newser = dates1({
+        day1,
+        mon1,
+        year1,
+        day2,
+        mon2,
+        year1,      
+     });
+
+ newser.save(()=>{
+      console.log('done')
+      console.log(newser)
+  });
+    
+})
+
+app.post('/delete',(req,res)=>{
+
+    const cid = req.body.cid;
+    var party;
+    candidate.findOne({id:cid},function(err,founduser){
+        if(err){
+            res.send(err);
+        }else{
+            
+            if(founduser)
+            {   
+                console.log(founduser)
+                party=founduser["party"];
+                candidate.deleteOne({id:cid}, function (err, result) {
+                    if (err) {
+                        console.log("error query");
+                    } else {
+                          console.log(result);
+
+
+                          total.findOne({party:party},function(err,founduser){
+                            if(err){
+                                res.send(err);
+                            }else{
+                                
+                                if(founduser)
+                                {   
+                                    total.deleteOne({party:party}, function (err, result) {
+                                        if (err) {
+                                            console.log("error query");
+                                        } else {
+                                              console.log(result);
+                                        }
+                                    });
+                                }
+                                
+                            }
+                        })
+                    }
+                });
+            }
+            
+        }
+   })
+
+  
+    
 })
 
 /*app.get('/results',(req,res)=>{

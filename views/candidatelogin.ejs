@@ -56,23 +56,22 @@ form input[type="submit"]:hover{
     </div>
 
     <div>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-              <a class="nav-item nav-link" href="#">HOME PAGE <span class="sr-only">(current)</span></a>
-              <a class="nav-item nav-link" href="login">LOGIN TO VOTE</a>
-              <a class="nav-item nav-link" href="signup">VOTERS CREATE ACCOUNT</a>
-              <a class="nav-item nav-link active" href="candidatelogin"><span class="sr-only">(current)</span>CANDIDATE LOGIN</a>
-              <a class="nav-item nav-link" href="candidatecreate">CANDIDATE CREATE ACCOUNT</a>
-              <a class="nav-item nav-link" href="#">ADMIN</a>
-              <a class="nav-item nav-link" href="#help">NEED HELP?</a>
-            </div>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-item nav-link" href="/">HOME PAGE </a>
+            <a class="nav-item nav-link " href="login"><span class="sr-only">(current)</span>LOGIN TO VOTE</a>
+            <a class="nav-item nav-link" href="signup">VOTERS CREATE ACCOUNT</a>
+            <a class="nav-item nav-link active" href="candidatelogin">CANDIDATE LOGIN</a>
+            <a class="nav-item nav-link" href="adminlogin">ADMIN</a>
+            <a class="nav-item nav-link" href="#help">NEED HELP?</a>
           </div>
-        </nav>
-     </div>
+        </div>
+      </nav>
+    </div>
 
    <div class="jumbotron">
        <h1><center>CANDIDATE LOGIN</center></h1>
@@ -85,13 +84,13 @@ form input[type="submit"]:hover{
               <div class="row">
                   <div class="col-sm-12">
                     <div ><label for="name">Candidate ID</label> </div>
-                    <div ><input type="text" id="name" required /> </div>
+                    <div ><input type="text" id="name" required name="id" /> </div>
                   </div>
               </div>
               <div class="row">
                   <div class="col-sm-12">
                    <div> <label for="pass">Password</label>   </div>
-                   <div> <input type="password" id="password" required /></div>
+                   <div> <input type="password" id="password" name="password" required /></div>
                   </div>
               </div>
               <div class="row">
@@ -107,7 +106,7 @@ form input[type="submit"]:hover{
 
     <br><br><br>
 
-    <div class="container">
+    <div class="container" id="help">
     <div class="bg">
     <div class="container">
       <div class="row">

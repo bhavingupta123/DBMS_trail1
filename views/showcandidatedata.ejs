@@ -103,8 +103,9 @@ form input[type="submit"]:hover{
             <a class="nav-item nav-link" href="/">HOME PAGE </a>
             <a class="nav-item nav-link active" href="login"><span class="sr-only">(current)</span>LOGIN TO VOTE</a>
             <a class="nav-item nav-link" href="signup">VOTERS CREATE ACCOUNT</a>
-            <a class="nav-item nav-link " href="candidatelogin">CANDIDATE LOGIN</a>
-            <a class="nav-item nav-link" href="adminlogin">ADMIN</a>
+            <a class="nav-item nav-link" href="candidatelogin">CANDIDATE LOGIN</a>
+            <a class="nav-item nav-link" href="candidatecreate">CANDIDATE CREATE ACCOUNT</a>
+            <a class="nav-item nav-link" href="#">ADMIN</a>
             <a class="nav-item nav-link" href="#help">NEED HELP?</a>
           </div>
         </div>
@@ -113,19 +114,16 @@ form input[type="submit"]:hover{
 
 
   <div class="jumbotron jumbotron-primary text-center  ">
-    <h1 >Please cast your vote</h1>
+    <h1 >CANDIATE INFO</h1>
   </div>
 
 
 <div class="box">
-  <form class="vote" method="POST" action="/vote">
 
-      <% candidateList.forEach(function(candidate){ %>
-        
-        <div class="container">
+       <!-- <div class="container">
           <div class="row">
             <div class="col-sm-2">
-              <label class="" for=""><%= candidate.party %></label>
+              <label class="" for=""><%= candidateList.party %></label>
             </div>
 
             <div class="col-sm-5">
@@ -133,11 +131,11 @@ form input[type="submit"]:hover{
             </div>
 
             <div class="col-sm-3">
-              <label class="" for=""><%= candidate.username %></label>
+              <label class="" for=""><%= candidateList.username %></label>
             </div>
             
             <div class="col-sm-1">
-              <input type="radio" value="<%= candidate.party %>" id="" name="vote" ><br>
+              <input type="radio" value="<%= candidateList.party %>" id="" name="vote" ><br>
             </div>
             
           </div>
@@ -145,14 +143,12 @@ form input[type="submit"]:hover{
         <hr>
 
     <%  })%>
-
-    <input type="submit" value="submit" name="CASTE VOTE"/>
-  </form>
+-->
 </div>
 
 <br><br><br>
 
-<div class="container" id="help">
+<div class="container">
 <div class="bg">
 <div class="container" id="help">
 <div class="row">

@@ -101,28 +101,28 @@ form input[type="submit"]:hover{
     </div>
 
        <div class="jumbotron" >
-            <h1 style="text-align: center;">SIGN UP</h1>
+            <h1 style="text-align: center;">DATES OF ELECTION</h1>
        </div>
 
 
        <div class="container">
-           <form action="/candidatecreate" method="POST" enctype="multipart/form-data"> 
+           <form action="/date" method="POST">
             <div class="row">
  
                 <div class="col-sm-1">
-                    <br>Candidate Name 
+                    <br>DAY
                 </div>
  
                 <div class="col-sm-4">
-                     <input type="text" placeholder="Enter your name" name="username"  required /> 
+                     <input type="number" placeholder="Enter day" name="day1"  required /> 
                  </div>
  
                 <div class="col-sm-1">
-                    <br>Candidate ID  
+                    <br>MONTH
                 </div>
  
                 <div class="col-sm-3">
-                     <input type="text" placeholder="Enter your voter id" name="id" required /> 
+                     <input type="number" placeholder="Enter month" name="month1" required /> 
                  </div>
  
             </div>
@@ -131,62 +131,26 @@ form input[type="submit"]:hover{
             <div class="row">
  
                 <div class="col-sm-1">
-                    <br>Party
+                    <br>DAY
                 </div>
  
                 <div class="col-sm-4">
-                    <input type="text" placeholder="Enter your party name" name="party" required />
+                    <input type="number" placeholder="Enter end date" name="day2" required />
                  </div>
  
                 <div class="col-sm-1">
-                    <br>Sign Upload
+                    <br>MONTH
                 </div>
- 
-               <div class="col-sm-3">
-                   <br>  <input type="file" name="filename" accept="image/*" enctype="multipart/form-data" required /> 
-                 </div>
                 
-            </div>
-            
-            <div class="row">
- 
-                <div class="col-sm-1">
-                    <br>Password 
-                </div>
- 
                 <div class="col-sm-4">
-                    <input type="password" placeholder="Enter a password" name="password" required />
-                 </div>
- 
-                <div class="col-sm-1">
-                    <br>  Confirm Password
+                    <input type="number" placeholder="Enter a month " name="month2" required />
                 </div>
- 
-                <div class="col-sm-3">
-                    <input type="password" placeholder="Enter a password" name="cpassword" required />
-                 </div>
- 
-            </div>
 
-           <div class="row">
-
-            <div class="col-sm-5">
-                <br>Gender <input type="radio" name="gender" value="M" />M
-                <input type="radio" name="gender" value="F" checked />F
-                <input type="radio" name="gender" value="Others" />Others
-            </div>
-
-            <div class="col-sm-7">
-                Date Of Birth <input type="date" name="date" required />
-            </div>
-        </div>
-
-        <div class="row">
-
-            <div class="col-sm-4"> </div>
-            <div class="col-sm-6">
-                <input type="submit" value="submit" />
-            </div>
+                <div class="row">
+                  <div class="col-sm-12">
+                    <center> <input type="submit" value="Submit" /> </center>
+                  </div>
+              </div>
         </div>
         </form>
        </div>
