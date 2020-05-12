@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOGIN </title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <style>
+        body{
+  color:black;
+
+}
+.container1{
+max-width: 500px;
+margin: 50px auto;
+background:white;
+border-radius: 5px;
+box-shadow: 5px 5px 15px -5px rgba(0,0,0,0.3);
+text-align:center;
+padding:10px;
+background-color:gray;
+}
+
+
+.bg
+ {
+    background-color: cadetblue;
+ }
+ img{
+   max-width:100%;
+   height:200px;
+ }
+  
+form input
+{
+margin: 75px 75px 75px 75px;
+}
+
+img
+{
+margin-left: 50px;
+height: 150px;
+width: 150px;
+}
+
+button
+{
+margin-left:  40% ;
+margin-top: 25px;
+}
+
+hr
+{
+border-bottom: solid #D4D4D4;
+}
+
+
+form input[type="submit"]
+{
+border-radius: 6px;
+
+background-color: #000000;
+color: #eee;
+font-weight: bold;
+/* margin-bottom: 2em; */
+text-transform: uppercase;
+padding: 10px;
+
+margin:20px;
+
+}
+
+form input[type="submit"]:hover{
+background-color:#d44179;
+}
+
+.box {
+padding: 100px 100px 100px 100px;
+max-width: 700px;
+margin: 50px auto;
+background: white;
+border-radius: 5px;
+box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.3);
+}
+
+.bg
+{
+background-color: cadetblue;
+}
+
+.fg{
+background-image: url("images/flag.jpg");
+max-width: 100%;
+background-repeat:no-repeat;
+}
+
+
+
+</style>
+</head>
+
+
+<body>
+
+    <div class="container">
+        <h1 style="text-align: center;">WELCOME TO GOVERMENT PORTAL FOR VOTING</h1>
+    </div>
+
+    <div>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-item nav-link" href="/">HOME PAGE </a>
+            <a class="nav-item nav-link " href="login"><span class="sr-only">(current)</span>LOGIN TO VOTE</a>
+            <a class="nav-item nav-link" href="signup">VOTERS CREATE ACCOUNT</a>
+            <a class="nav-item nav-link " href="candidatelogin">CANDIDATE LOGIN</a>
+            <a class="nav-item nav-link active" href="adminlogin">ADMIN</a>
+            <a class="nav-item nav-link" href="#help">NEED HELP?</a>
+          </div>
+        </div>
+      </nav>
+    </div>
+
+    <div>
+        <h1>Result is</h1>
+    </div>
+
+    <div>
+    </div>
+
+
+    <div class="box">
+    
+          <% candidateList.forEach(function(candidate){ %>
+            
+            <div class="container">
+              <div class="row">
+                <div class="col-sm-2">
+                  <label class="" for="" id="name"><%= candidate.party %></label>
+                </div>
+    
+                <div class="col-sm-3">
+                  <label class="" for="" id="votes"><%= candidate.votes %></label>
+                </div>
+                
+              </div>
+            </div>  
+            <hr>
+
+            <script>
+              
+            </script>
+        <%  })%>
+        
+    </div>
+
+
+    <canvas id="myChart" width="400" height="100"></canvas> 
+
+    <div id="piechart"></div>
+
+    <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"> 
+    </script> 
+
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+  <script type="text/javascript">
+
+var vtc =[];
+var ptc =[];
+<% candidateList.forEach(function(candidate){ %>
+    
+  
+    var names= <%- JSON.stringify(candidate.party) %>;
+    var data= <%- JSON.stringify(candidate.votes) %>;
+    vtc.push(data);
+    ptc.push(names);
+    console.log(names);
+    console.log(data);
+    <%  })%>
+
+
+    /*var names=['abc','aa'];
+    var data=[1,2];*/
+
+    var ctx = document.getElementById("myChart"); 
+    var myChart = new Chart(ctx, { 
+    type: 'pie', 
+    data: { 
+      labels:ptc, 
+      datasets: [ 
+      { label: '# of students', 
+        data:vtc,
+        backgroundColor :['rgba(255, 99, 132, 0.2)', 
+            'rgba(54, 162, 235, 0.2)', 
+            'rgba(255, 206, 86, 0.2)', 
+            'rgba(75, 192, 192, 0.2)', 
+            'rgba(153, 102, 255, 0.2)', 
+            'rgba(255, 159, 64, 0.2)' 
+    ], 
+    borderColor: [ 
+            'rgba(255,99,132,1)', 
+            'rgba(54, 162, 235, 1)', 
+            'rgba(255, 206, 86, 1)', 
+            'rgba(75, 192, 192, 1)', 
+            'rgba(153, 102, 255, 1)', 
+            'rgba(255, 159, 64, 1)' 
+          ], 
+    borderWidth : 1 
+      } 
+      ] 
+    }, 
+    options: { 
+        scales: { 
+          yAxes: [{ 
+            display:false,
+            ticks: { 
+              beginAtZero:true 
+            } 
+          }] 
+        } 
+      } 
+    }); 
+  // Load google charts
+  /*
+  google.charts.load('current', {'packages':['corechart']});
+  google.charts.setOnLoadCallback(drawChart);
+
+  function drawChart() {
+
+    
+  var data = google.visualization.arrayToDataTable([
+    ['Task', 'Hours per Day'],
+    ['hi',5],
+    ['Eat', 2],
+    ['TV', 4],
+    ['Gym', 2],
+    ['Sleep', 8]
+  ]);
+
+
+var data = new google.visualization.DataTable();
+  data.addColumn('string', 'party');
+  data.addColumn('number', 'votes');
+
+  data.addColumn("hi");
+  data.addRows(1);
+
+  data.addColumn("bye");
+  data.addRows(1);
+
+  
+  
+    // Optional; add a title and set the width and height of the chart
+    var options = {'title':'My Average Day', 'width':550, 'height':400};
+    console.log(name);
+    
+    console.log(votes);
+    // Display the chart inside the <div> element with id="piechart"
+    var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+    chart.draw(data, options);*/
+  
+  </script>
+
+<div class="container" id="help">
+  <div class="bg">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-4">
+        <div>
+          <h4>NEED ANY HELP?</h4>
+        </div>  
+      </div>
+  
+       <div class="col-sm-4">
+         <h4>VISIT US</h4>
+      </div>
+  
+       <div class="col-sm-4">
+        <h4>EMAIL</h4>
+      </div>
+  
+    </div>
+  </div>
+  
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-4">
+        <div>
+          <h6>CONTACT</h6>
+        </div>  
+      </div>
+  
+       <div class="col-sm-4">
+         <h6>LOCATION</h6>
+      </div>
+  
+       <div class="col-sm-4">
+        <h6>MAIL US:  </h6>
+      </div>
+  
+    </div>
+  </div>
+  
+  <br>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-4">
+        <div>
+          <h6>CONTACT</h6>
+        </div>  
+      </div>
+  
+       <div class="col-sm-4">
+         <h6>LOCATION</h6>
+      </div>
+  
+       <div class="col-sm-4">
+        <h6>MAIL US:  </h6>
+      </div>
+  
+    </div>
+  </div>
+  </div>
+</div>  
+
+</body>
+</html>

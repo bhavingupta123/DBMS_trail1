@@ -96,11 +96,11 @@ form input[type="submit"]:hover{
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
-            <a class="nav-item nav-link " href="#">HOME PAGE <span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link " href="home">HOME PAGE <span class="sr-only">(current)</span></a>
             <a class="nav-item nav-link" href="login">LOGIN TO VOTE</a>
             <a class="nav-item nav-link active" href="signup"><span class="sr-only">(current)</span>VOTERS CREATE ACCOUNT</a>
             <a class="nav-item nav-link" href="candidatelogin">CANDIDATE LOGIN</a>
-            <a class="nav-item nav-link" href="#">ADMIN</a>
+            <a class="nav-item nav-link" href="adminlogin">ADMIN</a>
             <a class="nav-item nav-link" href="#help">NEED HELP?</a>
           </div>
         </div>
@@ -149,7 +149,7 @@ form input[type="submit"]:hover{
             </div>
 
             <div class="col-sm-3">
-                <input type="text" placeholder="Enter your email-id" name="email" required /> 
+                <input type="text" placeholder="Enter your email-id" name="email" required onclick="tellEmail()"/> 
              </div>
 
         </div>
@@ -263,5 +263,13 @@ form input[type="submit"]:hover{
     </div>
     </div>  
    
+    <script>
+      alert("hello");
+
+      function tellEmail()
+      {
+        alert("enter correct email id as it will be used to verify otp");
+      }
+    </script>
 </body>
 </html>

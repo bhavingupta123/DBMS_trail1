@@ -8,6 +8,7 @@ const otpv = require('./data4')
 const admin = require('./data6')
 const otpp = require('./data5')
 const dates1 = require('./data7')
+const forgot_otp = require('./data8')
 const multer = require('multer')
 var fs = require('fs');
 const app = express();
@@ -15,8 +16,8 @@ const app = express();
 var nodemailer = require('nodemailer');
 var otpGenerator = require('otp-generator')
  
-var global_id;
-var global_email;
+var global_id,global_id_forgot_password;
+var global_email,global_email_forgot_password;
 var bjp_votes,congress_votes,others_votes,aap_votes;
 var check=0;
 
@@ -37,7 +38,10 @@ app.use(bodyparser({urlencoded:true}))
 var publicDir = require('path').join(__dirname,'/public')
 app.use(express.static(publicDir))
 
+
+//mongodb+srv://bhavin:<password>@cluster0-bfvv9.mongodb.net/test?retryWrites=true&w=majority
 mongoose.connect("mongodb://localhost/sample");
+//mongoose.connect("mongodb+srv://bhavin:bhavinis123@cluster0-bfvv9.mongodb.net/sample");
 
 app.set('views','views')
 app.set('view engine','ejs')
@@ -65,6 +69,108 @@ app.get('/signup',(req,res)=>{
     
 })
 
+app.get('/voterforgotpassword',(req,res)=>{
+    res.render('voterforgotpassword')
+})
+
+app.post('/voterforgotpassword',(req,res)=>{
+   const forgot_id = req.body.forgot_id;
+   global_id_forgot_password=forgot_id;
+   all.findOne({id:forgot_id},function(err,founduser){
+    if(err){
+        res.send(err);
+        }else{
+            if(founduser)
+            {   
+                global_email_forgot_password=founduser.email
+                console.log("fogot id");
+                console.log(forgot_id);
+                res.redirect('forgot_otp');
+            }
+            else
+            {
+                console.log("ffotgot123123 user not found")
+            }
+        }   
+    }) 
+})
+
+app.get('/forgot_otp',(req,res)=>{
+    
+    var otp = otpGenerator.generate(6, { upperCase: false, specialChars: false ,alphabets:false});
+    console.log("in otp page otp is:");
+    console.log(otp);
+
+    var transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          user: "goverment.portal9@gmail.com",
+          pass: "bhavinis123"
+        }
+      });
+      
+      var mailOptions = {
+        from: 'youremail@gmail.com',
+        to: global_email_forgot_password,
+        subject: 'FROM GOVERMENT PORTAL OF INDIA',
+        text: 'OTP IS '+ otp +' please caste your vote ' + ' dont share with anyone '
+      }; 
+      
+      transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+          console.log(error);
+        } else {
+          console.log('Email sent: ' + info.response);
+        }
+      });
+
+        const otpdata = otpp({
+            otp
+        });
+
+        otpdata.save(()=>{
+        console.log('done')
+        res.render('forgot_otp')
+    });
+
+    
+})
+
+
+
+app.post('/forgot_otp',(req,res)=>{
+
+    const otppr = req.body.otp;
+    
+    otpp.findOne({otp:otppr},function(err,founduser){
+        if(err){
+            res.send(err);
+        }
+        
+        else{
+            console.log("in otp page");
+            console.log(founduser)
+            if(founduser)
+            {   
+                otpp.deleteOne({otp:otppr}, function (err, result) {
+                    if (err) {
+                        console.log("error query");
+                    } else {
+                          console.log("otp deleted in forgot otp");
+                          res.redirect('/forgot_password')
+                    }
+                });
+
+               
+            }
+
+            else
+            {
+                console.log("in otp page no one found");
+            }
+        }
+   })
+})
 
 app.get('/otp',(req,res)=>{
 
@@ -93,7 +199,7 @@ app.get('/otp',(req,res)=>{
         from: 'youremail@gmail.com',
         to: global_email,
         subject: 'FROM GOVERMENT PORTAL OF INDIA',
-        text: 'OTP IS '+ otp +' please caste your vote '+' dont share with anyone '
+        text: 'OTP IS '+ otp +' please caste your vote ' + ' dont share with anyone '
       }; 
       
       transporter.sendMail(mailOptions, function(error, info){
@@ -118,6 +224,32 @@ app.get('/otp',(req,res)=>{
     });
 })
 
+app.get('/forgot_password',(req,res)=>{
+    res.render('forgot_password')
+})
+
+
+
+app.post('/forgot_password',(req,res)=>{
+    
+    const pas1 = req.body.new_password1;
+    const pas2 = req.body.new_password2;
+
+    if(pas1==pas2)
+    {
+        all.findOneAndUpdate({id:global_id_forgot_password},{$set: {password1: pas1}},function(err,founduser){
+            if(err){
+                console.log(err);
+            }
+            else{
+                res.render('passwordchanged')
+            }
+        })
+    }
+    else{
+        console.log("password in forgot not match")
+    }
+})
 
 app.post('/otp',(req,res)=>{
 
@@ -133,6 +265,14 @@ app.post('/otp',(req,res)=>{
             console.log(founduser)
             if(founduser)
             {   
+                otpp.deleteOne({otp:otppr}, function (err, result) {
+                    if (err) {
+                        console.log("error query");
+                    } else {
+                          console.log("otp deleted");
+                    }
+                });
+
                 res.redirect('/vote')
             }
 
@@ -165,7 +305,7 @@ app.get('/vote',(req,res)=>{
                     var day1=datesd[0].day1;
                     var day2=datesd[0].day2;
                     mon1=datesd[0].mon1;
-                    mon2=datesd.mon2;
+                    mon2=datesd[0].mon2;
                     year1=datesd[0].year1;
                     console.log("start date");
                     console.log(day1);
@@ -173,15 +313,19 @@ app.get('/vote',(req,res)=>{
                     console.log("end date");
                     console.log(day2);
 
-                    console.log("month");
+                    console.log("month1");
                     console.log(mon1);
+
+                    console.log("month2");
+                    console.log(mon2);
 
                     console.log("year");
                     console.log(year1);
 
-                    if(day1<=date && date<=day2 && month==mon1 && year1==year )
+                    if(day1<=date && month>=mon1 && year1==year || month<=mon2  && year1==year  )
                     {
-                      res.render("vote",{candidateList: foundCandidate});  
+                        if(month<=mon2)
+                            res.render("vote",{candidateList: foundCandidate});  
                     }
 
                     else
@@ -332,6 +476,7 @@ app.post('/candidatelogin',(req,res)=>{
 
 
 app.post('/login',(req,res)=>{
+
     const id = req.body.id;
     global_id=id;
     const password1 = req.body.password;
@@ -347,7 +492,7 @@ app.post('/login',(req,res)=>{
                 
                 console.log("vote data");
                 console.log(founduser);
-                console.log(founduser[0].vote);
+                //console.log(founduser[0].vote);
                 console.log(id);
 
                 if(founduser[0].vote==0)
@@ -423,7 +568,7 @@ app.post('/signup',(req,res)=>{
                     from: 'youremail@gmail.com',
                     to: email,
                     subject: 'FROM GOVERMENT PORTAL OF INDIA',
-                    text: 'Thank you for registering'+'please caste your vote'+'thank you'+'your username is'+username  +'thank you'
+                    text: 'Thank you for registering '+' please caste your vote '+' thank you '+' your username is '+ username  +' thank you'
                   };
                   
                   transporter.sendMail(mailOptions, function(error, info){
@@ -779,7 +924,13 @@ app.post('/delete',(req,res)=>{
 app.get('/',(req,res)=>{
     res.render('home')
 })
-
+/*
+let port = process.env.PORT;
+if (port == null || port == "") {
+  port = 8080;
+}
+app.listen(port);
+*/
 app.listen(8080,()=>{
     console.log("Listening on port 3000")
 })

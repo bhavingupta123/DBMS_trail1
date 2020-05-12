@@ -101,11 +101,10 @@ form input[type="submit"]:hover{
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
             <a class="nav-item nav-link" href="/">HOME PAGE </a>
-            <a class="nav-item nav-link active" href="login"><span class="sr-only">(current)</span>LOGIN TO VOTE</a>
+            <a class="nav-item nav-link " href="login">LOGIN TO VOTE</a>
             <a class="nav-item nav-link" href="signup">VOTERS CREATE ACCOUNT</a>
             <a class="nav-item nav-link" href="candidatelogin">CANDIDATE LOGIN</a>
-            <a class="nav-item nav-link" href="candidatecreate">CANDIDATE CREATE ACCOUNT</a>
-            <a class="nav-item nav-link" href="#">ADMIN</a>
+            <a class="nav-item nav-link active" href="adminlogin">ADMIN</a>
             <a class="nav-item nav-link" href="#help">NEED HELP?</a>
           </div>
         </div>
@@ -130,7 +129,7 @@ form input[type="submit"]:hover{
             </div>
 
             <div class="col-sm-5">
-              <img src="images\user.jpg" alt="">
+              <img src="./uploads/<%= candidate.sign  %>" alt="<%= candidate.party %>">
             </div>
 
             <div class="col-sm-3">
@@ -147,7 +146,7 @@ form input[type="submit"]:hover{
 
     <%  })%>
 
-    <input type="submit" value="submit" name="CASTE VOTE"/>
+    <input type="submit" value="Delete" name="CASTE VOTE"/>
   </form>
 </div>
 

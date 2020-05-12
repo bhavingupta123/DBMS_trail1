@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+
+  <link href="https://fonts.googleapis.com/css?family=Montserrat|Ubuntu" rel="stylesheet">
+
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/styles.css">
+
+  <!-- Font Awesome -->
+  <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+
+  <!-- Bootstrap Scripts -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<style>
+        body{
+  color:black;
+  
+}
+.container1{
+max-width: 400px;
+margin: 50px auto;
+background:white;
+border-radius: 5px;
+box-shadow: 5px 5px 15px -5px rgba(0,0,0,0.3);
+} 
+
+input{
+ margin:20px;
+ border-radius:4px;
+ height:40px;
+}
+form input[type="submit"]
+{
+ background-color: black;
+ color:white;
+ border-radius:4px;
+}
+form input[type="submit"]:hover{
+  background-color: #d44179;
+}
+
+.col-sm-12{
+  display: inline;
+  text-align: center;
+}
+
+.bg
+ {
+    background-color: cadetblue;
+ }
+</style>
+<body>
+    <div class="container">
+        <h1 align="center">WELCOME TO GOVERMENT PORTAL FOR VOTING</h1>
+    </div>
+
+    <div>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+              <a class="nav-item nav-link" href="#">HOME PAGE <span class="sr-only"></span></a>
+              <a class="nav-item nav-link" href="login">LOGIN TO VOTE</a>
+              <a class="nav-item nav-link" href="signup">VOTERS CREATE ACCOUNT</a>
+              <a class="nav-item nav-link" href="candidatelogin">CANDIDATE LOGIN</a>
+              <a class="nav-item nav-link active" href="candidatecreate">CANDIDATE CREATE ACCOUNT</a>
+              <a class="nav-item nav-link" href="#">ADMIN</a>
+              <a class="nav-item nav-link" href="#help">NEED HELP?</a>
+            </div>
+          </div>
+        </nav>
+        </div>
+
+       <div class="jumbotron" >
+            <h1 style="text-align: center;">CONFIRM OTP</h1>
+       </div>
+
+       <div class="container1">
+        <!--<center> -->
+        <div class="middle">
+              <div id="login">
+        
+                <form action="/forgot_otp" method="POST">
+                  <div class="row">
+                      <div class="col-sm-12">
+                        OTP <input type="text" name="otp" required /> 
+                      </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <center> <input type="submit" value="Verifyotp" /> </center>
+                    </div>
+                </div>
+    
+              </div>
+            </div>
+        
+        </div>
+    
+    
+            
+    <div class="container">
+        <div class="bg">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-4">
+              <div>
+                <h4>NEED ANY HELP?</h4>
+              </div>  
+            </div>
+        
+             <div class="col-sm-4">
+               <h4>VISIT US</h4>
+            </div>
+        
+             <div class="col-sm-4">
+              <h4>EMAIL</h4>
+            </div>
+        
+          </div>
+        </div>
+        
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-4">
+              <div>
+                <h6>CONTACT</h6>
+              </div>  
+            </div>
+        
+             <div class="col-sm-4">
+               <h6>LOCATION</h6>
+            </div>
+        
+             <div class="col-sm-4">
+              <h6>MAIL US:  </h6>
+            </div>
+        
+          </div>
+        </div>
+        
+        <br>
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-4">
+              <div>
+                <h6>CONTACT</h6>
+              </div>  
+            </div>
+        
+             <div class="col-sm-4">
+               <h6>LOCATION</h6>
+            </div>
+        
+             <div class="col-sm-4">
+              <h6>MAIL US:  </h6>
+            </div>
+        
+          </div>
+        </div>
+        </div>
+        </div>  
+</body>
+
+</html>  
